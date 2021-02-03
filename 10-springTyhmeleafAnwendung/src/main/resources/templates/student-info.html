@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: html_header">
+
+</head>
+<body>
+  <div th:replace="fragments :: menu"></div>
+   <div class="container-fluid mb-4">
+     <div class="row mt-2">
+        <div class="col">
+            <table class="table">
+               <thead class="bg-secondary text-white">
+                 <tr>
+                    <th>Id</th>
+                    <th>Vorname</th>
+                    <th>Nachname</th>
+                    <th>Email</th>
+                    <th>Programmiersprache</th>
+                    <th>Gender</th> 
+                    <th colspan="2">Action</th>                
+                 </tr>
+               </thead>
+               <tbody>
+                 <tr th:each="student : ${studentlist}">
+                  <td th:text="${student.id}"></td>
+                  <td th:text="${student.vorname}"></td>
+                  <td th:text="${student.nachname}"></td>
+                  <td th:text="${student.email}"></td>
+                  <td th:text="${student.prog_sprache}"></td>
+                  <td th:text="${student.gender}"></td>
+                  
+                  <td><a th:href="@{'/delete/'+ ${student.id}}" class="btn btn-danger">Delete</a></td>
+                  <td><a th:href="@{'/update/'+ ${student.id}}" class="btn btn-primary">Update</a></td>
+                 </tr>
+               </tbody>
+            </table>
+        </div>
+     </div>
+   </div>
+  <div th:replace="fragments :: footer"></div>
+</body>
+</html>

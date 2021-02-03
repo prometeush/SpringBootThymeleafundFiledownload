@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.tyhmeleaf.org">
+<head th:replace="fragments :: html_header">
+
+</head>
+<body>
+  <div th:replace="fragments :: menu"></div>
+   <div class="container-fluid">
+     <div class="row justify-content-center mt-2 mb-3">
+        <div class="col-8">
+           <form th:action="@{/studentSave}" th:object="${studentmodel}" method="post">
+           
+           <div class="form-group row">
+               <input type="hidden" class="form-control col-5" th:field="*{id}">
+             </div>
+           
+             <div class="form-group row">
+               <label for="vorname" class="col-form-label col-3">Vorname:</label>
+               <input type="text" id="vorname" class="form-control col-5" th:field="*{vorname}">
+               <span  th:if="${#fields.hasErrors('vorname')}" th:errors="*{vorname}" class="text-italic text-danger"></span>
+             </div>
+             
+             <div class="form-group row">
+               <label for="nachname" class="col-form-label col-3">Nachname:</label>
+               <input type="text" id="nachname" class="form-control col-5" th:field="*{nachname}">
+                <span  th:if="${#fields.hasErrors('nachname')}" th:errors="*{nachname}" class="text-italic text-danger"></span>
+             </div>
+             
+              <div class="form-group row">
+               <label for="email" class="col-form-label col-3">Email:</label>
+               <input type="email" id="email" class="form-control col-5" th:field="*{email}">
+                <span  th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-italic text-danger"></span>
+             </div>
+             
+              <div class="form-group row">
+               <label for="prog" class="col-form-label col-3">ProgrammierSprache:</label>
+               <select id="prog" class="custom-select col-5" th:field="*{prog_sprache}">
+                 <option th:each="programmierung : ${programmierunglist}" th:value="${programmierung}" th:text="${programmierung}">
+               </select>
+                <span  th:if="${#fields.hasErrors('prog_sprache')}" th:errors="*{prog_sprache}" class="text-italic text-danger"></span>
+             </div>
+             
+              <div class="form-group row">
+               <label class="col-form-label col-3">Gender:</label>
+                <div class="col-5">
+                 <div class="custom-control custom-radio custom-control-inline">
+                  <input type="radio" id="radio1" name="radios" class="custom-control-input" th:value="Frau" th:field="*{gender}">
+                  <label for="radio1" class="custom-control-label">Frau</label>
+                 </div>
+                 <div class="custom-control custom-radio custom-control-inline">
+                  <input type="radio" id="radio2" name="radios" class="custom-control-input" th:value="Herr" th:field="*{gender}">
+                  <label for="radio2" class="custom-control-label">Herr</label>
+                 </div>
+                </div>
+                 <span  th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}" class="text-italic text-danger"></span>
+             </div>
+             
+              <div class="form-group row">
+               <label  class="col-form-label col-3"></label>
+               <button type="submit" class="btn btn-success col-5">Anmelden</button>
+             </div>
+             
+           </form>
+        </div>
+     </div>
+   </div>
+  <div th:replace="fragments :: footer"></div>
+</body>
+</html>
